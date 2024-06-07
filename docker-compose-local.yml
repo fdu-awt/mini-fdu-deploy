@@ -1,4 +1,3 @@
-version: '3'
 services:
   mini-fdu-user-service:
     image: mini-fdu-user:1.0.0
@@ -33,3 +32,13 @@ services:
       MYSQL_USER_PASSWORD: password123
     ports:
       - "8798:8798"
+  mini-fdu-ai:
+    image: mini-fdu-ai:1.0.0
+    container_name: mini-fdu-ai
+    ports:
+      - "8796:8796"
+  mini-fdu-front:
+    image: mini-fdu-front:1.0.0
+    container_name: mini-fdu-front
+    ports:
+      - "8080:80"
