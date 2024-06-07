@@ -11,3 +11,25 @@ services:
       MYSQL_USER_PASSWORD: password123
     ports:
       - "8799:8799"
+  mini-fdu-study-service:
+    image: mini-fdu-study:1.0.0
+    container_name: mini-fdu-study
+    environment:
+      SERVER_PORT: 8797
+      MYSQL_HOST: host.docker.internal
+      MYSQL_PORT: 9004
+      MYSQL_USER_NAME: mini_fdu_admin
+      MYSQL_USER_PASSWORD: password123
+    ports:
+      - "8797:8797"
+  mini-fdu-socket-service:
+    image: mini-fdu-socket:1.0.0
+    container_name: mini-fdu-socket
+    environment:
+      SERVER_PORT: 8798
+      MYSQL_HOST: host.docker.internal
+      MYSQL_PORT: 9004
+      MYSQL_USER_NAME: mini_fdu_admin
+      MYSQL_USER_PASSWORD: password123
+    ports:
+      - "8798:8798"
