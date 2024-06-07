@@ -587,6 +587,34 @@ INSERT INTO `recommend_link` (`id`, `topic`, `title`, `link`)
 VALUES (6, 'history', '复旦老建筑的前世今生，来了解一下吧！ (fudan.edu.cn)',
         'https://alumni.fudan.edu.cn/52/90/c29410a414352/page.htm');
 -- ---------------------------------socket-service---------------------------------------------------------------------------------
+DROP TABLE IF EXISTS `history_message`;
+CREATE TABLE `history_message`
+(
+    `id` INT NOT NULL AUTO_INCREMENT,
+    `local_id` INT NOT NULL,
+    `remote_id` INT NOT NULL,
+    `content` VARCHAR(255) NOT NULL,
+    `time_stamp` TIMESTAMP NOT NULL,
+    `type` VARCHAR(255) NOT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4;
 
+INSERT INTO `history_message` (`local_id`, `remote_id`, `content`, `time_stamp`, `type`)
+VALUES (1, 2, 'Hello !', '2024-05-01 12:00:00', 'text');
+
+INSERT INTO `history_message` (`local_id`, `remote_id`, `content`, `time_stamp`, `type`)
+VALUES (2, 1, 'Hi!', '2024-05-01 12:05:00', 'text');
+
+INSERT INTO `history_message` (`local_id`, `remote_id`, `content`, `time_stamp`, `type`)
+VALUES (1, 2, 'How are you today?', '2024-05-01 12:10:00', 'text');
+INSERT INTO `history_message` (`local_id`, `remote_id`, `content`, `time_stamp`, `type`)
+VALUES (2, 3, '视频通话时长: 01:01:01', '2024-05-01 12:04:00', 'video');
+INSERT INTO `history_message` (`local_id`, `remote_id`, `content`, `time_stamp`, `type`)
+VALUES (2, 4, '视频通话时长: 02:05', '2024-05-04 12:08:00', 'video'),
+       (2, 4, '视频通话：已拒绝', '2024-04-29 12:09:00', 'video'),
+       (2, 1, '视频通话时长: 02:05', '2024-05-01 12:08:00', 'video'),
+       (1, 2, '视频通话：已拒绝', '2024-05-01 12:09:00', 'video'),
+       (2, 1, '视频通话：已拒绝', '2024-05-01 12:10:00', 'video');
 -- ------------------------------------------------------------------------------------------------------------------
 SET FOREIGN_KEY_CHECKS = 1;
