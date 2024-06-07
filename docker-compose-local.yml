@@ -1,0 +1,13 @@
+version: '3'
+services:
+  mini-fdu-user-service:
+    image: mini-fdu-user:1.0.0
+    container_name: mini-fdu-user
+    environment:
+      SERVER_PORT: 8799
+      MYSQL_HOST: host.docker.internal
+      MYSQL_PORT: 9004
+      MYSQL_USER_NAME: mini_fdu_admin
+      MYSQL_USER_PASSWORD: password123
+    ports:
+      - "8799:8799"
