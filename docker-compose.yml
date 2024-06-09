@@ -1,0 +1,37 @@
+x-common:
+  &common_env
+  environment:
+    MYSQL_HOST: host.docker.internal
+    MYSQL_PORT: 9004
+    MYSQL_USER_NAME: mini_fdu_admin
+    MYSQL_USER_PASSWORD: password123
+
+services:
+  mini-fdu-user-service:
+    image: zmarkgo/mini-fdu-user:1.0.0
+    container_name: mini-fdu-user
+    <<: *common_env  # 使用x-common定义的环境变量
+    ports:
+      - "8799:8799"
+  mini-fdu-study-service:
+    image: zmarkgo/mini-fdu-study:1.0.0
+    container_name: mini-fdu-study
+    <<: *common_env  # 使用x-common定义的环境变量
+    ports:
+      - "8797:8797"
+  mini-fdu-socket-service:
+    image: zmarkgo/mini-fdu-socket:1.0.0
+    container_name: mini-fdu-socket
+    <<: *common_env  # 使用x-common定义的环境变量
+    ports:
+      - "8798:8798"
+  mini-fdu-ai:
+    image: zmarkgo/mini-fdu-ai:1.0.0
+    container_name: mini-fdu-ai
+    ports:
+      - "8796:8796"
+  mini-fdu-front:
+    image: zmarkgo/mini-fdu-front:1.0.0
+    container_name: mini-fdu-front
+    ports:
+      - "8080:80"

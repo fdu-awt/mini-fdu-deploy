@@ -34,3 +34,14 @@ docker-compose -f docker-compose-local.yml up -d
 # 关闭服务
 docker-compose -f docker-compose-local.yml down
 ```
+
+使用远程镜像
+
+```Shell
+# 确保位于项目根目录
+cd ..
+# 启动服务
+docker-compose up -d
+# 关闭服务
+docker-compose down
+```
