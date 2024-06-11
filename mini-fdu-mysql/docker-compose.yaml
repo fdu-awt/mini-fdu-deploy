@@ -22,6 +22,6 @@ services:
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
       - ./wait-for-it.sh:/wait-for-it.sh
-    entrypoint: chmod +x /wait-for-it.sh && /wait-for-it.sh mysql:3306 -t 60 -- /bin/bash -c 'sleep 10 && echo "MySQL is up" && mysql -h mysql -uroot -proot < /docker-entrypoint-initdb.d/init.sql && echo "SQL script executed"'
+    entrypoint: /wait-for-it.sh mysql:3306 -t 60 -- /bin/bash -c 'sleep 10 && echo "MySQL is up" && mysql -h mysql -uroot -proot < /docker-entrypoint-initdb.d/init.sql && echo "SQL script executed"'
 volumes:
   mini-fdu-volume:

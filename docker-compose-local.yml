@@ -1,3 +1,6 @@
+networks:
+  mini-fdu-network:
+    driver: bridge
 x-common:
   &common_env
   environment:
@@ -7,34 +10,54 @@ x-common:
     MYSQL_USER_PASSWORD: password123
 
 services:
-  mini-fdu-user-service:
+  mini-fdu-user:
     image: mini-fdu-user:1.0.0
     container_name: mini-fdu-user
     <<: *common_env  # 使用x-common定义的环境变量
     ports:
       - "8799:8799"
-  mini-fdu-study-service:
+    networks:
+      - mini-fdu-network
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+  mini-fdu-study:
     image: mini-fdu-study:1.0.0
     container_name: mini-fdu-study
     <<: *common_env  # 使用x-common定义的环境变量
     ports:
       - "8797:8797"
-  mini-fdu-socket-service:
+    networks:
+      - mini-fdu-network
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+  mini-fdu-socket:
     image: mini-fdu-socket:1.0.0
     container_name: mini-fdu-socket
     <<: *common_env  # 使用x-common定义的环境变量
     ports:
       - "8798:8798"
+    networks:
+      - mini-fdu-network
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
   mini-fdu-ai:
     image: mini-fdu-ai:1.0.0
     container_name: mini-fdu-ai
     ports:
       - "8796:8796"
+    networks:
+      - mini-fdu-network
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
   mini-fdu-gateway:
     image: mini-fdu-gateway:1.0.0
     container_name: mini-fdu-gateway
     ports:
       - "8700:8700"
+    networks:
+      - mini-fdu-network
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     environment:
       SERVER_PORT: 8700
       USER_SERVICE_IP: host.docker.internal
@@ -52,12 +75,16 @@ services:
       AI_SERVICE_IP: host.docker.internal
       AI_SERVICE_PORT: 8796
     depends_on:
-      - mini-fdu-user-service
-      - mini-fdu-study-service
-      - mini-fdu-socket-service
+      - mini-fdu-user
+      - mini-fdu-study
+      - mini-fdu-socket
       - mini-fdu-ai
   mini-fdu-front:
     image: mini-fdu-front:1.0.0
     container_name: mini-fdu-front
     ports:
       - "8080:80"
+    networks:
+      - mini-fdu-network
+    extra_hosts:
+      - "host.docker.internal:host-gateway"

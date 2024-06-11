@@ -41,6 +41,12 @@ docker-compose down
 docker-compose down -v
 ```
 
+验证：
+
+```shell
+docker exec -it mini-fdu-mysql mysql -uroot -proot
+```
+
 ## 服务部署
 
 使用本地镜像
