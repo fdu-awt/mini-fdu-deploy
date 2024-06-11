@@ -12,7 +12,7 @@ exportDir="./images"
 # 导入镜像
 for ((i=0; i<${#imageArray[@]}; i++)); do
     imageName="${imageArray[$i]}"
-    exportFile="${exportDir}/${exportFileArray[$i]}.tar" # 假设文件扩展名是 .tar
+    exportFile="${exportDir}/${exportFileArray[$i]}"
 
     # 检查文件是否存在
     if [ -f "$exportFile" ]; then
