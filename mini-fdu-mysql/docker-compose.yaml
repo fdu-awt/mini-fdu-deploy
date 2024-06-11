@@ -1,7 +1,7 @@
 services:
   mysql:
     image: mysql:8.0.34
-    container_name: mini-fdu
+    container_name: mini-fdu-mysql
     environment:
       MYSQL_ROOT_PASSWORD: root
     volumes:
