@@ -2,6 +2,25 @@
 
 2024年春季学期《高级Web技术》课程PJ项目部署
 
+## 镜像导出
+
+```powershell
+./ExportDockerImages.ps1
+```
+
+## 镜像导入
+
+```powershell
+./ImportDockerImages.ps1
+```
+
+或者shell
+
+```Shell
+chmod +x ImportDockerImages.sh
+./ImportDockerImages.sh
+```
+
 ## MySQL 部署
 
 使用docker-compose部署mysql
