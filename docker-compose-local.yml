@@ -30,6 +30,32 @@ services:
     container_name: mini-fdu-ai
     ports:
       - "8796:8796"
+  mini-fdu-gateway:
+    image: mini-fdu-gateway:1.0.0
+    container_name: mini-fdu-gateway
+    ports:
+      - "8700:8700"
+    environment:
+      SERVER_PORT: 8700
+      USER_SERVICE_IP: host.docker.internal
+      USER_SERVICE_PORT: 8799
+      MESSAGE_SERVICE_IP: host.docker.internal
+      MESSAGE_SERVICE_PORT: 8798
+      CHAT_SERVICE_IP: host.docker.internal
+      CHAT_SERVICE_PORT: 8798
+      GAME_SERVICE_IP: host.docker.internal
+      GAME_SERVICE_PORT: 8798
+      VIDEO_CHAT_SERVICE_IP: host.docker.internal
+      VIDEO_CHAT_SERVICE_PORT: 8798
+      STUDY_SERVICE_IP: host.docker.internal
+      STUDY_SERVICE_PORT: 8797
+      AI_SERVICE_IP: host.docker.internal
+      AI_SERVICE_PORT: 8796
+    depends_on:
+      - mini-fdu-user-service
+      - mini-fdu-study-service
+      - mini-fdu-socket-service
+      - mini-fdu-ai
   mini-fdu-front:
     image: mini-fdu-front:1.0.0
     container_name: mini-fdu-front
