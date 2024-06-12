@@ -33,6 +33,7 @@ chmod +x ImportDockerImages.sh
 
 ```Shell
 cd mini-fdu-mysql
+chmod +x wait-for-it.sh
 # 启动mysql
 docker-compose up -d
 # 关闭
