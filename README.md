@@ -70,4 +70,7 @@ cd ..
 docker-compose up -d
 # 关闭服务
 docker-compose down
+# 服务更新
+chmod +x update.sh
+./update.sh
 ```
